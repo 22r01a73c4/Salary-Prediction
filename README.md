@@ -52,7 +52,7 @@ DEPARTMENT_ID
 
 The model outputs:
 
-💰 Predicted Salary (e.g., ₹6,200.54)
+ Predicted Salary (e.g., ₹6,200.54)
 
  Use Cases:
  
