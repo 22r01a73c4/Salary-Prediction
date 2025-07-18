@@ -1,0 +1,3 @@
+# STEP 1: Install necessary packages
+
+!pip install openpyxl scikit-learn ipywidgets --quiet
