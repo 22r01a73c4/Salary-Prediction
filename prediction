@@ -1,0 +1,40 @@
+# Create interactive widgets for prediction
+
+import ipywidgets as widgets
+from IPython.display import display
+
+job_id_dropdown = widgets.Dropdown(
+    options=list(le.classes_),
+    description='JOB_ID:',
+    style={'description_width': 'initial'},
+    layout=widgets.Layout(width='50%')
+)
+
+manager_id_input = widgets.IntText(
+    value=int(df['MANAGER_ID'].median()),
+    description='Manager ID:',
+    layout=widgets.Layout(width='50%')
+)
+
+department_id_input = widgets.IntText(
+    value=int(df['DEPARTMENT_ID'].median()),
+    description='Department ID:',
+    layout=widgets.Layout(width='50%')
+)
+
+predict_button = widgets.Button(description="Predict Salary 💰", button_style='success')
+output = widgets.Output()
+
+def predict_salary(b):
+    job_code = le.transform([job_id_dropdown.value])[0]
+    input_data = np.array([[job_code, manager_id_input.value, department_id_input.value]])
+    salary = model.predict(input_data)[0]
+    with output:
+        output.clear_output()
+        print(f"💼 Predicted Salary: ₹{salary:.2f}")
+
+predict_button.on_click(predict_salary)
+
+# Display widgets
+
+display(job_id_dropdown, manager_id_input, department_id_input, predict_button, output)
