@@ -1,3 +1,4 @@
+Step 3:
 # Load and clean the data
 
 import pandas as pd
